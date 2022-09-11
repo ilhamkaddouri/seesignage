@@ -1,0 +1,34 @@
+.container{
+    flex-grow: 1;
+}
+
+.body{
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    flex-grow: 1;
+}
+
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.link{
+    text-decoration: none;
+}
+.btn {
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    background-color: transparent;
+}
+
+.playlists {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
