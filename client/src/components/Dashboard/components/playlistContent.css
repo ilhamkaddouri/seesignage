@@ -17,10 +17,6 @@
     flex-grow: 1;
 }
 
-h2{
-    text-transform: uppercase;
-    color: rgb(1, 1, 1);
-}
 
 .list-item{
     background-color: rgb(172, 175, 176);
@@ -39,4 +35,8 @@ h2{
 .text{
     text-align: center;
     margin: 0 auto;
+}
+
+span{
+    margin-right: 15px;
 }

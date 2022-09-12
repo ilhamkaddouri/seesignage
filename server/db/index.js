@@ -1,6 +1,6 @@
 const dbConfig = require("./db.config");
 const Sequelize = require("sequelize");
-// Code here! It works!
+
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
@@ -12,9 +12,10 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     idle: dbConfig.pool.idle
   }
 });
-const db = {};
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
-db.Playlists = require("./models/Playlist")(sequelize);
-db.PlaylistContent = require("./models/PlaylistContent")(sequelize);
+const db = {
+  Sequelize,
+  sequelize,
+  Playlists: require("./models/Playlist")(sequelize),
+  PlaylistContent: require("./models/PlaylistContent")(sequelize)
+};
 module.exports = db;

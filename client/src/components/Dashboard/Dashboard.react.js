@@ -27,26 +27,30 @@ const Dashboard = () => {
       setName("");
       handleClose();
       window.location.reload(false);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
     const fetchPlaylists = async () => {
-      const plysts = await getAllPlaylists();
-      setPlaylists(plysts.data);
+      try {
+        const plysts = await getAllPlaylists();
+        setPlaylists(plysts.data);
+      } catch (err) {
+        console.error(err);
+      }
     };
-    try {
-      fetchPlaylists();
-    } catch (err) {
-      console.log(err);
-    }
+    fetchPlaylists();
   }, []);
 
   return (
     <div className="container">
       <Header />
       <div className="body">
-        <Button onClick={handleOpen} className='btn'>Add new playlist</Button>
+        <Button onClick={handleOpen} className="btn">
+          Add new playlist
+        </Button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -54,21 +58,25 @@ const Dashboard = () => {
           aria-describedby="modal-modal-description"
         >
           <Box component="form" sx={boxStyle}>
-              <TextField
-                id="standard-basic"
-                label="Playlist name"
-                variant="standard"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <Button onClick={addNewPlaylist}>Save</Button>
+            <TextField
+              id="standard-basic"
+              label="Playlist name"
+              variant="standard"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <Button onClick={addNewPlaylist}>Save</Button>
           </Box>
         </Modal>
       </div>
       <div className="playlists">
-        {playlists.map((playlist, key) => (
-          <Playlist name={playlist.name} id={playlist.id} key={key} />
-        ))}
+        {playlists.length > 0 ? (
+          playlists.map((playlist, key) => (
+            <Playlist name={playlist.name} id={playlist.id} key={key} />
+          ))
+        ) : (
+          <span>No playlists found, please create one!</span>
+        )}
       </div>
     </div>
   );

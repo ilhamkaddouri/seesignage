@@ -1,3 +1,13 @@
-.displayer{
-    margin-top: 50px;
+.container{
+    flex-grow: 1;
+}
+
+p{
+   font-size: 14px;
+   text-transform: uppercase;
+}
+
+h3{
+    text-align: center;
+    margin: 0 auto;
 }

@@ -38,16 +38,18 @@ const PlaylistContent = () => {
 
   useEffect(() => {
     const findPlaylist = async () => {
-      if (id) {
-        const foundPlayist = await findPlaylistById(id);
-        const playlistContent = await getContentOfPlaylist(id);
-        setPlaylist(foundPlayist.data);
-        setPlaylistContent(playlistContent.data);
+      try{
+        if (id) {
+          const foundPlayist = await findPlaylistById(id);
+          const playlistContent = await getContentOfPlaylist(id);
+          setPlaylist(foundPlayist.data);
+          setPlaylistContent(playlistContent.data);
+        }
+      } catch(err) {
+        console.error(err);
       }
     };
-    try {
-      findPlaylist();
-    } catch (err) {}
+    findPlaylist();
   }, [id]);
 
   const deleteContent = async (contentId) => {
@@ -60,9 +62,9 @@ const PlaylistContent = () => {
       <Header/>
       <div className="body">
       <div className="playlist-content-header">
-        <h2>
+        <p>
           Playlist name : {playlist.name}
-        </h2>
+        </p>
         <div>
           <Button onClick={handleOpen}>Add new content</Button>
           <ModalComponent actionType={OPERATIONS.CREATE} open={open} onClose={handleClose} playlistId={id}/>

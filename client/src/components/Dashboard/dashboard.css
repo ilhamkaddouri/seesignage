@@ -18,3 +18,7 @@
     flex-direction: row;
     margin-top: 50px;
 }
+
+span{
+    margin: 0 auto;
+}

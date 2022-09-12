@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Header from "../common/Header/Header.react";
 import { getContentOfPlaylist } from "../Dashboard/API/API";
-import '../styles.css';
-import './signagePlayer.css';
+import "../styles.css";
+import "./signagePlayer.css";
 
 const SignagePlayer = ({ playlistId }) => {
   const [playlistContent, setPlaylistContent] = useState([]);
@@ -11,14 +10,16 @@ const SignagePlayer = ({ playlistId }) => {
 
   useEffect(() => {
     const findPlaylist = async () => {
-      const contents = await getContentOfPlaylist(playlistId);
-      const images = contents.data.map(({ url }) => url);
-      setPlaylistContent(contents.data);
-      setImgs(images);
+      try {
+        const contents = await getContentOfPlaylist(playlistId);
+        const images = contents.data.map(({ url }) => url);
+        setPlaylistContent(contents.data);
+        setImgs(images);
+      } catch (err) {
+        console.log(err);
+      }
     };
-    try {
-      findPlaylist();
-    } catch (err) {}
+    findPlaylist();
   }, [playlistId]);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ const SignagePlayer = ({ playlistId }) => {
     <div className="container">
       <div className="body">
         <div className="displayer">
-          <h3> SignagePlayer {playlistId}</h3>
+          <h3>Your Displayer</h3>
           <img
             className="img"
             src={imgs[currentImage]}

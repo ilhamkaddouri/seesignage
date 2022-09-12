@@ -11,9 +11,10 @@ db.sequelize.sync({ force: true })
     console.log("Failed to sync db: " + err.message);
   });
 
-var corsOptions = {
+let corsOptions = {
   origin: "*"
 };
+
 app.use(cors(corsOptions));
 
 app.use(express.json());
