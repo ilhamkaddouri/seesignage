@@ -1,8 +1,11 @@
+const paylists = require("../controllers/playlist");
+const router = require("express").Router();
+
 module.exports = app => {
-    const paylists = require("../controllers/playlist");
-    var router = require("express").Router();
+
     // Create a new playlist
     router.post("/", paylists.create);
+
     // Retrieve all paylists
     router.get("/", paylists.findAll);
   

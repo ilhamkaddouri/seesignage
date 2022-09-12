@@ -5,7 +5,6 @@ const {
 } = require("../controllers/utils");
 const db = require("../db/index");
 const PlaylistContent = db.PlaylistContent;
-const paylistContent = require("../controllers/playlistContent");
 const router = require("express").Router();
 
 module.exports = (app) => {
@@ -31,7 +30,6 @@ module.exports = (app) => {
       res.status(500).send({
         message: err.message,
       });
-      // return HttpError.processResponse(err, res, `Failed to create or update content ${req.body.id}.`);
     }
   });
 
